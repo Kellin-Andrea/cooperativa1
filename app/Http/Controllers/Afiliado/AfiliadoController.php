@@ -46,44 +46,35 @@ class AfiliadoController extends Controller {
         return view("Modulos.Afiliado.afiliado.crear", compact('objmunicipio', 'objtipo_identificacion', 'objdepartamento', 'objestado_civil', 'objocupacion', 'objestudios'));
     }
 
-    public function postCrear(Request $request) {
+    public function postCrear() {
 
-        $id = "DEFAULT";
-        $nro_documento = $request->input('nro_documento');
-        
-        var_dump($request);
-        
-        
-        $nombres = $request->input('nombres');
-           var_dump($request);
-        $apellidos = $request->input('apellidos');
-           var_dump($request);
-        $direccion = $request->input('direccion');
-           var_dump($request);
-        $telefono = $request->input('telefono');
-           var_dump($request);
-        $municipio_id = $request->input('municipio_id');
-           var_dump($request);
-        $correo = $request->input('correo');
-           var_dump($request);
-        $sexo = $request->input('sexo');
-           var_dump($request);
-        $tipo_identificacion_id = $request->input('tipo_identificacion_id');
-           var_dump($request);
-        $departamento_id = $request->input('departamento_id');
-           var_dump($request);
-        $estado_civil_id = $request->input('estado_civil_id');
-           var_dump($request);
-        $ocupacion_id = $request->input('ocupacion_id');
-           var_dump($request);
-        $estudios_id = $request->input('estudios_id');
-           var_dump($request);
+
+
+        $datos = \Request::all();
+
+
+        $nro_documento = $datos['nro_documento'];
+        $nombres = $datos['nombres'];
+        $apellidos = $datos['apellidos'];
+        $direccion = $datos['direccion'];
+        $municipio_id = $datos['municipio_id'];
+        $correo = $datos['correo'];
+        $telefono = $datos['telefono'];
+        $sexo = $datos['sexo'];
+        $estado_civil_id = $datos['estado_civil_id'];
+        $ocupacion_id = $datos['ocupacion_id'];
+        $tipo_identificacion_id = $datos['tipo_identificacion_id'];
+        $departamento_id = $datos['departamento_id'];
+        $estudios_id = $datos['estudios_id'];
+
+
+//dd($datos);
+
 
 
         $sql = DB::insert(
                         "INSERT INTO afiliado "
                         . "( "
-                        . " id, "
                         . " nro_documento, "
                         . " nombres, "
                         . " apellidos, "
@@ -99,11 +90,11 @@ class AfiliadoController extends Controller {
                         . " estudios_id "
                         . ") "
                         . "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)", array(
-                    $telefono,
                     $nro_documento,
                     $nombres,
                     $apellidos,
                     $direccion,
+                    $telefono,
                     $municipio_id,
                     $correo,
                     $sexo,
@@ -113,57 +104,45 @@ class AfiliadoController extends Controller {
                     $departamento_id,
                     $estudios_id
         ));
-        if ($sql <> 0):
-            Alert::success('El Registro Fue Exitoso..!!!')->persistent('Cerrar')->autoclose(3000);
-            return Redirect::to(url('afiliado/listar'));
-        else:
-            echo "El Registro No Se Guardo";
-        endif;
+
+        return \Redirect::to('afiliado/listar');
+//        return view("Modulos.Produccion.Talla.listar", compact("objTalla"));
     }
 
     public function getListar() {
-        $sql = "SELECT * FROM  afiliado ";
-        $afiliado = \DB::select($sql);
-
-        return view('Modulos.Afiliado.afiliado.listar', compact("afiliado"));
+        $objafiliado = \DB::select("SELECT * FROM afiliado");
+        return view("Modulos.Afiliado.Afiliado.listar", compact("objafiliado"));
     }
 
-    public function getVer($per_id) {
+    public function getEditar($id) {
+        $sql = "SELECT * FROM municipio";
+        $objmunicipio = \DB::select($sql);
 
-        $sql = "SELECT * FROM ciudad";
-        $objCiudad = \DB::select($sql);
+        $sql = "SELECT * FROM departamento";
+        $objdepartamento = \DB::select($sql);
 
-        $sql = "SELECT * FROM tipo_cliente";
-        $objTipoCliente = \DB::select($sql);
+        $sql = "SELECT * FROM tipo_identificacion";
+        $objtipo_identificacion = \DB::select($sql);
 
-        $sql = "select * from persona where per_id=$per_id";
-        $personas = \DB::select($sql);
-        return view("Modulos.Administracion.persona.show", compact('personas', 'objCiudad', 'objTipoCliente'));
-    }
+        $sql = "SELECT * FROM estado_civil";
+        $objestado_civil = \DB::select($sql);
 
-    public function getEditar($per_id) {
-        $sql = "SELECT * FROM ciudad";
-        $objCiudad = \DB::select($sql);
+        $sql = "SELECT * FROM ocupacion";
+        $objocupacion = \DB::select($sql);
 
-        $sql = "SELECT * FROM tipo_cliente";
-        $objTipoCliente = \DB::select($sql);
-
-        $sql = "select * from persona where per_id=$per_id";
-        $personas = \DB::select($sql);
-        return view("Modulos.Administracion.persona.editar", compact('personas', 'objCiudad', 'objTipoCliente'));
+        $sql = "SELECT * FROM estudios";
+        $objestudios = \DB::select($sql);
+        return view("Modulos.Afiliado.Afiliado.editar", compact('afiliado', 'objmunicipio', 'objtipo_identificacion', 'objdepartamento', 'objestado_civil', 'objestudios', 'objocupacion'));
     }
 
     public function postEditar() {
         $datos = \Request::all();
-        $personas = \DB::select("UPDATE persona SET per_identificacion ='{$datos['per_identificacion']}',per_nombres ='{$datos['per_nombres']}',
-        						per_apellidos ='{$datos['per_apellidos']}',per_direccion ='{$datos['per_direccion']}',per_telefono='{$datos['per_telefono']}', 
-        						ciu_id='{$datos['ciu_id']}',per_fecha_nacimiento='{$datos['per_fecha_nacimiento']}', per_correo='{$datos['per_correo']}', 
-        						tip_cli_id='{$datos['tip_cli_id']}' 
-                                WHERE per_id='" . $datos['per_id'] . "'");
-
-        Alert::success('Persona Actualizada Con exito!')->persistent('Cerrar')->autoclose(3000);
-
-        return Redirect::to(url('persona/listar'));
+        $objafiliado = \DB::select("UPDATE afiliado SET nro_documento ='{$datos['nro_documento']}',nombres ='{$datos['nombres']}',
+        						apellidos ='{$datos['apellidos']}',direccion ='{$datos['direccion']}',telefono='{$datos['telefono']}', 
+        						municipio_id='{$datos['municipio_id']}',sexo='{$datos['sexo']}', correo='{$datos['correo']}', 
+        						tipo_identificacion_id='{$datos['tipo_identificacion_id']}',departamento_id='{$datos['departamento_id']}',estado_civil_id='{$datos['estado_civil_id']}',"
+                        . "                                                                 ocupacion_id='{$datos['ocupacion_id']}',estudios_id='{$datos['estudios_id']}'
+                                WHERE id='" . $datos['id'] . "'");
     }
 
     public function getDesactivar($per_id) {

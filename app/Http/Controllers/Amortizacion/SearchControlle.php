@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Amortizacion;
+namespace App\Http\Controllers\Search;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use DB;
 use Alert;
-class AmortizacionController extends Controller {
+class SearchController extends Controller {
 
     /**
      * Display a listing of the resource.

@@ -7,7 +7,7 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <center><h3 class="box-title"> Listado de Amortizacion</h3></center>
+            <center><h3 class="box-title"> Listado de Afiliado</h3></center>
             <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i
                         class="fa fa-minus"></i></button>
@@ -18,49 +18,47 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">Listado de Amortizacion</h3>
+                        <h3 class="box-title">Listado de Afiliado</h3>
                     </div><!-- /.box-header -->
                     <div class="box-success">
                         <div class="table-responsive">
                             <table id="tabla" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">Numero cuotas</th>
-                                        <th class="text-center">Fecha</th>
-                                        <th class="text-center">Capital</th>                   
-                                        <th class="text-center">Cuota capital</th> 
-                                        <th class="text-center">Cuota interes</th>
-                                        <th class="text-center">Valor cuota</th>
+                                        <th class="text-center">Identificacion</th>
+                                        <th class="text-center">Nombre</th>
+                                        <th class="text-center">Apellido</th>                   
+                                        <th class="text-center">Direccion</th> 
+                                        <th class="text-center">Correo</th>
+                                        <th class="text-center">Telefono</th>
 
                                         <th class="text-center">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($objamortizacion as $amortizacion) { ?>
+                                    <?php foreach ($objafiliado as $afiliado) { ?>
                                         <tr>
-                                            <td><?php echo $amortizacion->nro_cuota ?></td>
-                                            <td class="text-center"><?php echo $amortizacion->fecha_cuota ?></td>
-                                            <td class="text-center">                                         
-                                            <td><?php echo $amortizacion->capital ?></td>
-                                            <td><?php echo $amortizacion->cuota_capital ?></td>
-                                            <td><?php echo $amortizacion->cuota_interes ?></td>
-                                            <td><?php echo $amortizacion->valor_cuota ?></td>
+                                            <td><?php echo $afiliado->nro_documento ?></td>
+                                            <td><?php echo $afiliado->nombres ?></td>
+                                            <td><?php echo $afiliado->apellidos ?></td>
+                                            <td><?php echo $afiliado->direccion ?></td>
+                                            <td><?php echo $afiliado->correo ?></td>
+                                            <td><?php echo $afiliado->telefono ?></td>
+                                            <td class="text-center">  
+                                                <a href="<?php echo url("amortizacion/ver/" . $afiliado->id) ?>"
+                                                   class="btn btn-info btn-sm">Ver</a>
+                                                <a href="<?php echo url("afiliado/editar/" . $afiliado->id) ?>"
+                                                   class="btn btn-info btn-sm">Editar</a>
 
-                                    <a href="<?php echo url("amortizacion/ver/" . $amortizacion->id) ?>"
-                                       class="btn btn-info btn-sm">Ver</a>
+                                                <button onclick="Desactivar(<?php echo $afiliado->id ?>)"
+                                                        class="btn btn-danger btn-sm" id="dss">Deshabilitar
+                                                </button>
 
 
-                                    <button onclick="Desactivar(<?php echo $amortizacion->id ?>)"
-                                            class="btn btn-danger btn-sm" id="dss">Deshabilitar
-                                    </button>
 
-                                    <button onclick="Activar(<?php echo $amortizacion->id ?>)"
-                                            class="btn btn-success btn-sm" id="add">Activar
-                                    </button>
-
-                                    </td>
-                                    </tr>
-                                <?php } ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>

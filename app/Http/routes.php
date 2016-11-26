@@ -18,6 +18,12 @@ Route::get('/', function () {
 });
 //Route::get('/', 'FrontEndController@index');
 Route::get('home', 'FrontEndController@index');
+Route::get('search', 'searchController@index');
+
+
+     
+    
+    
 
 
 Route::controllers([
@@ -28,15 +34,10 @@ Route::controllers([
   'menu'       => 'Menu\MenuController',
   /* Modulo Administraccion */
   'amortizacion'    => 'Amortizacion\AmortizacionController',
+  //'amortizacion' => 'Amortizacion\SearchController',
   'credito'    => 'Credito\CreditoController',
-   'afiliado'    => 'Afiliado\AfiliadoController', 
-//  'persona'    => 'Administracion\PersonaController',
-//  'empresa'    => 'Administracion\EmpresaController',
-//  /* Modulo de Produccion */
-//  'talla'      => 'Produccion\TallaController',
-//  'producto'   => 'Produccion\ProductoController',
-//  'tipo'       => 'Produccion\TipoProductoController',
-//  'inventario' => 'Inventario\InventarioController',
-//  /* Modulo de Usuarios */
-//  'usuario'    => 'Usuarios\UsuariosController'
+  'afiliado'    => 'Afiliado\AfiliadoController', 
+  'transaccion'    => 'Transaccion\TransaccionController', 
+    
+
 ]);

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Credito;
+namespace App\Http\Controllers\Transaccion;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use DB;
 use Alert;
-class  CreditoController extends Controller {
+class  TransaccionController extends Controller {
 
     /**
      * Display a listing of the resource.
@@ -28,65 +28,48 @@ class  CreditoController extends Controller {
   }
 
   public function getCrear() {
-      $sql = "SELECT * FROM tipo_credito";
-        $objtipocredito = \DB::select($sql);
-       
-        $sql = "SELECT * FROM periodo";
-        $objperiodo= \DB::select($sql);
+      $sql = "SELECT * FROM tipo_transaccion";
+        $objtipotransaccion = \DB::select($sql);
+        
+     
         
         $sql = "SELECT * FROM afiliado";
         $objafiliado= \DB::select($sql);
-    return view("Modulos.Credito.credito.crear", compact('objtipocredito','objperiodo','objafiliado'));
+        
+    return view("Modulos.Transaccion.transaccion.crear", compact('objtipotransaccion','objafiliado'));
   }
 
   public function postCrear() {
 
     $datos          = \Request::all();
-    $fecha_tramite    = $datos['fecha_tramite'];
+   
+    $fecha_movimiento    = $datos['fecha_movimiento'];
     $nro_credito= $datos['nro_credito'];
-    $tipo_credito_id=  $datos['tipo_credito_id'];
-    $plazo= $datos['plazo'];    
-    $tasa= $datos['tasa'];
-    $periodo_id = ['periodo_id'];
-    $valor_credito= $datos['valor_credito'];
+    $tipo_transaccion_id= $datos['tipo_transaccion_id'];
+    $cuota_pago= $datos['cuota_pago'];    
+    $valor_capital= $datos['valor_capital'];
     $valor_interes= $datos['valor_interes'];    
-    $saldo_credito= $datos['saldo_credito'];
     $afiliado_id= $datos['afiliado_id'];
-//        dd($datos);
+     // dd($datos);
     \DB::insert(
-      "INSERT INTO credito "
-      . "( " 
-      . " fecha_tramite,  "
-      . " nro_credito,  "
-      . " tipo_credito_id, "
-      . " plazo,  "
-      ." tasa,  "
-      . " periodo_id,  "
-      . " valor_credito, "
-      . " valor_interes,  "
-      ." saldo_credito,  "
-      . " afiliado_id  "
-      . ") "
-      . "VALUES (?,?,?,?,?,?,?,?,?,?)", array(
-       $fecha_tramite,
+      "INSERT INTO transaccion "
+      . "(fecha_movimiento, nro_credito, tipo_transaccion_id, cuota_pago, valor_capital, valor_interes, afiliado_id ) "
+      . "VALUES (?,?,?,?,?,?,?)", array(
+       $fecha_movimiento,
        $nro_credito,
-       $tipo_credito_id,
-       $plazo,    
-       $tasa,
-       $periodo_id,
-       $valor_credito,
+       $tipo_transaccion_id,
+       $cuota_pago,    
+       $valor_capital,
        $valor_interes,
-       $saldo_credito,
-       $afiliado_id  
+       $afiliado_id
     ));
-      dd($datos);   
-    return \Redirect::to('credito/listar');
+    return \Redirect::to('transaccion/listar');
 //        return view("Modulos.Produccion.Talla.listar", compact("objTalla"));
   }
 
   public function getListar() {
-    $objcredito = \DB::select("SELECT * FROM credito");
-    return view("Modulos.Credito.Credito.listar", compact("objcredito"));
+    $objtransaccion = \DB::select("SELECT * FROM transaccion");
+    return view("Modulos.Transaccion.Transaccion.listar", compact("objtransaccion"));
   }
 
   public function getEditar($id) {

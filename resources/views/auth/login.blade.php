@@ -4,7 +4,7 @@
 
 <div class="login-box">
 	<div class="login-logo">
-		<a href="{{ url('/auth/login') }}"><b>Marroquienria </b>C.D.T.I</a>
+		<a href="{{ url('/auth/login') }}"><b>Cooperativa </b>XYZ</a>
 	</div>
 	<!-- /.login-logo -->
 	@section('content')
@@ -51,7 +51,7 @@
 		
 
 		<a href="#">He olvidado mi contraseña</a><br>
-		<a href="{{ url('/auth/register') }}" class="text-center">Registrar una Nueva Cuenta</a>
+		
 
 	</div>
 	<!-- /.login-box-body -->

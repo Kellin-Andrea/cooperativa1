@@ -36,7 +36,7 @@
               
                      <!-----------Modulo de Amortizacion-->
                      <li>
-                        <a href="#"><i class="fa fa-user"></i> Amortizacion <i class="fa fa-angle-left pull-right"></i></a>
+                        <a href="#"><i class="fa fa-cog"></i> Amortizacion <i class="fa fa-angle-left pull-right"></i></a>
                         <ul class="treeview-menu">
                             <li><a href="{{ url('amortizacion/crear') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
                             <li><a href="{{ url('amortizacion/listar') }}"><i class="fa fa-circle-o"></i> Consultar</a></li>
@@ -53,14 +53,21 @@
                     
                     <!-----------Modulo de Afiliado-->
                        <li>
-                        <a href="#"><i class="fa fa-caret-up"></i> Afiliado <i class="fa fa-angle-left pull-right"></i></a>
+                        <a href="#"><i class="fa fa-users"></i> Afiliado <i class="fa fa-angle-left pull-right"></i></a>
                         <ul class="treeview-menu">
                             <li><a href="{{ url('afiliado/crear') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
                             <li><a href="{{ url('afiliado/listar') }}"><i class="fa fa-circle-o"></i> Consultar</a></li>
                         </ul>
                     </li>
                     
-                    
+                         <!-----------Modulo Transaccion-->
+                       <li>
+                        <a href="#"><i class="fa fa-table"></i> Transaccion <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{ url('transaccion/crear') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
+                            <li><a href="{{ url('transaccion/listar') }}"><i class="fa fa-circle-o"></i> Consultar</a></li>
+                        </ul>
+                    </li>
             <!-----------Modulo de Usuarios-->
             <li class="treeview">
                 <a href="#">

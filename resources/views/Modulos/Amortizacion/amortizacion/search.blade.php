@@ -34,32 +34,7 @@
 
                                         <th class="text-center">Acciones</th>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($objamortizacion as $amortizacion) { ?>
-                                        <tr>
-                                            <td><?php echo $amortizacion->nro_cuota ?></td>
-                                            <td><?php echo $amortizacion->fecha_cuota ?></td>
-                                            <td><?php echo $amortizacion->capital ?></td>
-                                            <td><?php echo $amortizacion->cuota_capital ?></td>
-                                            <td><?php echo $amortizacion->cuota_interes ?></td>
-                                            <td><?php echo $amortizacion->valor_cuota ?></td>
-                                                
-                                            <td class="text-center">     
-
-                                                <a href="<?php echo url("amortizacion/ver/" . $amortizacion->id) ?>"
-                                                   class="btn btn-info btn-sm">Ver</a>
-
-                                           <button onclick="Desactivar(<?php echo $amortizacion->id ?>)"
-                                                        class="btn btn-danger btn-sm" id="dss">Deshabilitar
-                                                </button>
-                                              
-                                              
-                                            </td>
-                                        </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
+                           
                         </div>
                     </div>
                 </div><!-- /.box box-primary -->

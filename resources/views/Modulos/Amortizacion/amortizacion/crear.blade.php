@@ -14,6 +14,13 @@
         <div class="col-md-12">
             <!-- general form elements -->
             <div class="box box-primary">
+               
+                   <form class="navbar-form navbar-right" role="search" method="get" action="<?php echo url('amortizacion/search') ?>">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="numero cuota">
+                            </div>
+                            <button type="submit" class="btn btn-default">Buscar</button>
+                        </form>
 
                 <form name="signupForm1" id="signupForm1" class="form-horizontal" method="post" autocomplete="off" action="<?php echo url('amortizacion/crear') ?>">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -23,48 +30,51 @@
                                 <i class=""></i><font><font>Informacion General
                             </h2>
                         </div>
+
+                       
+                        
                         <div class="col-lg-6 form-group">
                             <label class="col-sm-3 control-label" for="nro_cuota">Numero cuota </label>
                             <div class="col-xs-9">
                                 <input type="number" class="form-control" name="nro_cuota" id="nro_cuota" placeholder="nro_cuota" onkeypress="return numeros(event)" required/>
                             </div>
                         </div>
-                      
+
                         <div class="col-lg-6 form-group">
                             <label class="col-sm-3 control-label" for="fecha_cuota">Fecha cuota </label>
                             <div class="col-sm-9">
                                 <input type="date" class="form-control" name="fecha_cuota" id="fecha_cuota" placeholder="fecha_cuota" onkeypress="return numeros(event)"required/>
                             </div>
                         </div>
-                        
-                          <div class="col-lg-6 form-group">
+
+                        <div class="col-lg-6 form-group">
                             <label class="col-sm-3 control-label" for="capital">Capital</label>
                             <div class="col-xs-9">
                                 <input type="number" class="form-control" name="capital" id="nro_cuota" placeholder="capital" onkeypress="return numeros(event)" required/>
                             </div>
                         </div>
-                        
-                          <div class="col-lg-6 form-group">
+
+                        <div class="col-lg-6 form-group">
                             <label class="col-sm-3 control-label" for="cuota_capital">Cuota capital</label>
                             <div class="col-xs-9">
                                 <input type="number" class="form-control" name="cuota_capital" id="cuota_capital" placeholder="cuota capital" onkeypress="return numeros(event)" required/>
                             </div>
                         </div>
-                        
-                           <div class="col-lg-6 form-group">
+
+                        <div class="col-lg-6 form-group">
                             <label class="col-sm-3 control-label" for="cuota_interes">Cuota interes</label>
                             <div class="col-xs-9">
                                 <input type="number" class="form-control" name="cuota_interes" id="cuota_interes" placeholder="cuota interes" onkeypress="return numeros(event)" required/>
                             </div>
                         </div>
-                        
-                           <div class="col-lg-6 form-group">
+
+                        <div class="col-lg-6 form-group">
                             <label class="col-sm-3 control-label" for="valor_cuota">Valor cuota </label>
                             <div class="col-xs-9">
                                 <input type="number" class="form-control" name="valor_cuota" id="valor_cuota" placeholder="valor cuota l" onkeypress="return numeros(event)" required/>
                             </div>
                         </div>
-                       
+
                         <div class="col-lg-12">
                             <div class="box-footer">
                                 <input type="submit" class="btn btn-success" onclick="valida_envia()" value="Registrar" id="registrar" />               

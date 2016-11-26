@@ -38,12 +38,12 @@
                         </div>
                         
                                <div class="col-lg-6 form-group">
-                                    <label class="col-sm-3 control-label" for="tipo_credito_id_fk">Tipo credito</label>
+                                    <label class="col-sm-3 control-label" for="tipo_credito_id">Tipo credito</label>
                                     <div class="col-sm-9">
-                             <select class="form-control select2-single" name="credito_id" id="credito_id" placeholder="Credito">
+                             <select class="form-control select2-single" name="tipo_credito_id" id="tipo_credito_id" placeholder="Tipo Credito">
                                     <option value="">Selecciona un tipo credito</option>
-                                    <?php foreach ($objtipo_credito as $credito) { ?>
-                                        <option value="<?php echo $credito->id ?>"><?php echo $credito->nombre ?></option>
+                                    <?php foreach ($objtipocredito as $tipocredito) { ?>
+                                        <option value="<?php echo $tipocredito->id ?>"><?php echo $tipocredito->nombre ?></option>
                                     <?php } ?>
                                 </select>
                                     </div>
@@ -63,13 +63,13 @@
                             </div>
                         </div>
                         
-                               <div class="col-lg-6 form-group">
-                                    <label class="col-sm-3 control-label" for="periodo_id_fk">Periodo</label>
+                   <div class="col-lg-6 form-group">
+                                    <label class="col-sm-3 control-label" for="periodo_id">Periodo</label>
                                     <div class="col-sm-9">
-                                   <select class="form-control select2-single" name="periodo_id" id="periodo_id" placeholder="Periodo">
-                                    <option value="">Selecciona un periodo</option>
+                             <select class="form-control select2-single" name="periodo_id" id="periodo_id_id" placeholder="Tipo Credito">
+                                    <option value="">Selecciona un tipo credito</option>
                                     <?php foreach ($objperiodo as $periodo) { ?>
-                                        <option value="<?php echo $periodo->id ?>"><?php echo $periodo->nombre ?></option>
+                                        <option value="<?php echo $tipoperiodo->id ?>"><?php echo $tipoperiodo->nombre ?></option>
                                     <?php } ?>
                                 </select>
                                     </div>
@@ -104,12 +104,12 @@
                         </div>
                         
                                <div class="col-lg-6 form-group">
-                                    <label class="col-sm-3 control-label" for="afiliado_id_fk">Afiliado</label>
+                                    <label class="col-sm-3 control-label" for="afiliado_id">Afiliado</label>
                                     <div class="col-sm-9">
                                         <select class="form-control select2-single" name="afiliado_id" id="afiliado_id" placeholder="Afiliado">
                                     <option value="">Selecciona un afiliado</option>
                                     <?php foreach ($objafiliado as $afiliado) { ?>
-                                        <option value="<?php echo $afiliado->id ?>"><?php echo $afiliado->nombre ?></option>
+                                        <option value="<?php echo $afiliado->id ?>"><?php echo $afiliado->nombres ?></option>
                                     <?php } ?>
                                 </select>
                                     </div>
