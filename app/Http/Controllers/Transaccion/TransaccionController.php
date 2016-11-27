@@ -61,7 +61,7 @@ class  TransaccionController extends Controller {
        $cuota_pago,    
        $valor_capital,
        $valor_interes,
-       $afiliado_id
+       $afiliado_id,
     ));
     return \Redirect::to('transaccion/listar');
 //        return view("Modulos.Produccion.Talla.listar", compact("objTalla"));
@@ -93,7 +93,12 @@ class  TransaccionController extends Controller {
     return view("Modulos.Transaccion.Transaccion.editar", compact('transaccion', 'objafiliado', 'objtipotransaccion'));
   }
 
-
+    public function postEditar() {
+        $datos = \Request::all();
+        $transaccion = \DB::select("UPDATE transaccion SET        fecha_movimiento= '" . $datos['fecha_movimiento'] . "', nro_credito='" . $datos['nro_credito'] . "', tipo_transaccion_id='" . $datos['tipo_transaccion_id'] . "', valor_capital='" . $datos['valor_capital'] . "', "
+                        . "                                                                   cuota_pago='" . $datos['cuota_pago'] . "', valor_interes='" . $datos['valor_interes'] . "', afiliado_id='" . $datos['afiliado_id'] . "' WHERE id = " . $datos['id'] . "");
+        return \Redirect::to('transaccion/listar');
+    }
   public function getDesactivar($id) {
 
     $sql       = "update transacion set estado=0 where id=$id";

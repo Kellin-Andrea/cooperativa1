@@ -95,7 +95,7 @@ class AmortizacionController extends Controller {
 
   public function getDesactivar($id) {
 
-    $sql       = "update amortizacion set estado=0 where id=$id";
+    $sql       = "update amortizacion set estado=1 where id=$id";
     $amortizacion = \DB::select($sql);
     return Redirect::to(url('amortizacion/listar'));
   }

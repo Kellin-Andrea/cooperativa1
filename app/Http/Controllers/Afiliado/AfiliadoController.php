@@ -128,7 +128,7 @@ class AfiliadoController extends Controller {
                         . "                                             saldo_interes from afiliado,credito,tipo_credito "
                         . "                                             WHERE credito.afiliado_id=afiliado.id "
                         . "                                             AND credito.tipo_credito_id = tipo_credito.id");
-        return view("Modulos.Afiliado.Afiliado.todo", compact("objsaldos"));
+        return view("Modulos.Afiliado.Afiliado.saldo", compact("objsaldos"));
     }
 
     public function getEditar($id) {

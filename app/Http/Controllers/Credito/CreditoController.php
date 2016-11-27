@@ -58,6 +58,7 @@ class CreditoController extends Controller {
         $tipo_credito_id = $datos['tipo_credito_id'];
         $valor_credito = $datos['valor_credito'];
          $amortizacion_id = $datos['amortizacion_id'];
+        $afiliado_id = $datos['afiliado_id'];
         $valor_interes = $datos['valor_interes'];
      
 
@@ -66,24 +67,11 @@ class CreditoController extends Controller {
 
 
 
-        $sql = DB::insert(
-                        "INSERT INTO credito "
-                        . "( "
-                        . " fecha_tramite, "
-                        . " nro_credito, "
-                        . " periodo_id, "
-                        . " plazo, "
-                        . " saldo_credito, "
-                        . " saldo_interes, "
-                        . " tasa, "
-                        . " tipo_credito_id, "
-                        . " valor_credito, "
-                       . " amortizacion_id, "
-                        . " valor_interes "
-                      
-                
-                        . ") "
-                        . "VALUES (?,?,?,?,?,?,?,?,?,?,?)", array(
+            \DB::insert(
+      "INSERT INTO credito "
+      . "(fecha_tramite, nro_credito, tipo_credito_id, plazo, tasa, periodo_id,valor_credito,valor_interes,saldo_credito,saldo_interes,afiliado_id,amortizacion_id "
+      . "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)", array(
+
                     $fecha_tramite,
                     $nro_credito,
                     $periodo_id,
@@ -93,9 +81,9 @@ class CreditoController extends Controller {
                     $tasa,
                     $tipo_credito_id,
                     $valor_credito,
+                    $afiliado_id,
                      $amortizacion_id,
-                    $valor_interes,
-                    
+                    $valor_interes  
         ));
 
         return \Redirect::to('credito/listar');
