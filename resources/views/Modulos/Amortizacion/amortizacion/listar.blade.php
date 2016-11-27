@@ -31,6 +31,7 @@
                                         <th class="text-center">Cuota capital</th> 
                                         <th class="text-center">Cuota interes</th>
                                         <th class="text-center">Valor cuota</th>
+                                        <th class="text-center">Estado</th>
 
                                         <th class="text-center">Acciones</th>
                                     </tr>
@@ -44,17 +45,22 @@
                                             <td><?php echo $amortizacion->cuota_capital ?></td>
                                             <td><?php echo $amortizacion->cuota_interes ?></td>
                                             <td><?php echo $amortizacion->valor_cuota ?></td>
-                                                
+                                             <td><?php echo $amortizacion->estado?></td>
+
                                             <td class="text-center">     
 
-                                                <a href="<?php echo url("amortizacion/ver/" . $amortizacion->id) ?>"
-                                                   class="btn btn-info btn-sm">Ver</a>
 
-                                           <button onclick="Desactivar(<?php echo $amortizacion->id ?>)"
-                                                        class="btn btn-danger btn-sm" id="dss">Deshabilitar
-                                                </button>
-                                              
-                                              
+                                                <?php if ($amortizacion->estado == 1): ?>
+                                                    <button onclick="Desactivar(<?php echo $amortizacion->id ?>)"
+                                                            class="btn btn-danger btn-sm" id="dss">Deshabilitar
+                                                    </button>
+                                                <?php else: ?>
+                                                    <button onclick="Activar(<?php echo $amortizacion->id ?>)"
+                                                            class="btn btn-success btn-sm" id="add">Activar
+                                                    </button>
+                                                <?php endif; ?>
+
+
                                             </td>
                                         </tr>
                                     <?php } ?>

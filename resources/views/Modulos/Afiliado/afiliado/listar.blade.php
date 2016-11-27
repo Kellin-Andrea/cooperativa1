@@ -31,7 +31,7 @@
                                         <th class="text-center">Direccion</th> 
                                         <th class="text-center">Correo</th>
                                         <th class="text-center">Telefono</th>
-
+                                        <th class="text-center">Estado</th>
                                         <th class="text-center">Acciones</th>
                                     </tr>
                                 </thead>
@@ -44,15 +44,21 @@
                                             <td><?php echo $afiliado->direccion ?></td>
                                             <td><?php echo $afiliado->correo ?></td>
                                             <td><?php echo $afiliado->telefono ?></td>
+                                            <td><?php echo $afiliado->estado ?></td>
                                             <td class="text-center">  
-                                                <a href="<?php echo url("amortizacion/ver/" . $afiliado->id) ?>"
-                                                   class="btn btn-info btn-sm">Ver</a>
+
                                                 <a href="<?php echo url("afiliado/editar/" . $afiliado->id) ?>"
                                                    class="btn btn-info btn-sm">Editar</a>
 
-                                                <button onclick="Desactivar(<?php echo $afiliado->id ?>)"
-                                                        class="btn btn-danger btn-sm" id="dss">Deshabilitar
-                                                </button>
+                                                <?php if ($afiliado->estado == 1): ?>
+                                                    <button onclick="Desactivar(<?php echo $afiliado->id ?>)"
+                                                            class="btn btn-danger btn-sm" id="dss">Deshabilitar
+                                                    </button>
+                                                <?php else: ?>
+                                                    <button onclick="Activar(<?php echo $afiliado->id ?>)"
+                                                            class="btn btn-success btn-sm" id="add">Activar
+                                                    </button>
+                                                <?php endif; ?>
 
 
 

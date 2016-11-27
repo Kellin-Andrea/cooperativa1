@@ -71,44 +71,40 @@ class  TransaccionController extends Controller {
     $objtransaccion = \DB::select("SELECT * FROM transaccion");
     return view("Modulos.Transaccion.Transaccion.listar", compact("objtransaccion"));
   }
+  
+      public function getMovimientos() {
+        $objmovimientos= \DB::select("SELECT nro_documento,nombres,apellidos, fecha_movimiento,nombre,"
+                . "                                                   cuota_pago,valor_capital,valor_interes from afiliado,transaccion,"
+                . "                                                   tipo_transaccion WHERE transaccion.afiliado_id=afiliado.id AND "
+                . "                                                  transaccion.tipo_transaccion_id = tipo_transaccion.id");
+        return view("Modulos.Transaccion.Transaccion.movimientos", compact("objmovimientos"));
+    }
 
   public function getEditar($id) {
 
-    $sql              = "SELECT * FROM tipo_producto";
-    $objTipoProductos = \DB::select($sql);
+    $sql      = "SELECT * FROM  tipo_transaccion";
+    $objtipotransaccion = \DB::select($sql);
 
-    $objTalla = \DB::select("SELECT * FROM talla WHERE tal_id = $id");
-    return view("Modulos.Produccion.Talla.editar", compact("objTalla", 'objTipoProductos'));
+    $sql      = "SELECT * FROM afiliado";
+    $objafiliado = \DB::select($sql);
+
+    $sql       = "select * from transaccion where id=$id";
+    $transaccion= \DB::select($sql);
+    return view("Modulos.Transaccion.Transaccion.editar", compact('transaccion', 'objafiliado', 'objtipotransaccion'));
   }
 
-  public function postEditar() {
-    $datos    = \Request::all();
-    $objTalla = \DB::select("UPDATE talla SET tal_dimension = '" . $datos['dimension'] . "'  WHERE tal_id = " . $datos['id'] . "");
-    return \Redirect::to('talla/listar');
-  }
-
-  public function getEliminar($id) {
-    $objTalla = \DB::select("SELECT * FROM talla WHERE tal_id = $id");
-    return view("Modulos.Produccion.Talla.eliminar", compact("objTalla"));
-  }
-
-  public function postEliminar() {
-    $datos    = \Request::all();
-    $objTalla = \DB::select("DELETE FROM talla WHERE tal_id = '" . $datos['id'] . "'");
-    return \Redirect::to('talla/listar');
-  }
 
   public function getDesactivar($id) {
 
-    $sql       = "update talla set tal_estado=0 where tal_id=$id";
-    $productos = \DB::select($sql);
-    return Redirect::to(url('talla/listar'));
+    $sql       = "update transacion set estado=0 where id=$id";
+    $transacion = \DB::select($sql);
+    return Redirect::to(url('transacion/listar'));
   }
 
   public function getActivar($id) {
 
-    $sql       = "update talla set tal_estado=1 where tal_id=$id";
-    $productos = \DB::select($sql);
+    $sql       = "update transaccion set estado=1 where id=$id";
+    $transacion = \DB::select($sql);
     return Redirect::to(url('talla/listar'));
   }
 

@@ -52,7 +52,7 @@ class AfiliadoController extends Controller {
 
         $datos = \Request::all();
 
-
+        
         $nro_documento = $datos['nro_documento'];
         $nombres = $datos['nombres'];
         $apellidos = $datos['apellidos'];
@@ -68,7 +68,7 @@ class AfiliadoController extends Controller {
         $estudios_id = $datos['estudios_id'];
 
 
-//dd($datos);
+        //dd($datos);
 
 
 
@@ -102,7 +102,7 @@ class AfiliadoController extends Controller {
                     $estado_civil_id,
                     $tipo_identificacion_id,
                     $departamento_id,
-                    $estudios_id
+                    $estudios_id,
         ));
 
         return \Redirect::to('afiliado/listar');
@@ -112,6 +112,23 @@ class AfiliadoController extends Controller {
     public function getListar() {
         $objafiliado = \DB::select("SELECT * FROM afiliado");
         return view("Modulos.Afiliado.Afiliado.listar", compact("objafiliado"));
+    }
+
+    public function getTodo() {
+        $objtodo = \DB::select("SELECT nombre,nro_documento,nombres,apellidos,correo,telefono,"
+                                                         . " fecha_tramite,nro_credito,saldo_credito,saldo_interes from afiliado,"
+                                                         . " tipo_identificacion,credito WHERE credito.afiliado_id=afiliado.id AND "
+                                                         . "afiliado.tipo_identificacion_id = tipo_identificacion.id");
+        return view("Modulos.Afiliado.Afiliado.todo", compact("objtodo"));
+    }
+
+    public function getSaldo() {
+        $objsaldos = \DB::select("SELECT nro_documento,nombres,apellidos, nro_credito,"
+                        . "tipo_credito.nombre,valor_credito, saldo_credito,"
+                        . "                                             saldo_interes from afiliado,credito,tipo_credito "
+                        . "                                             WHERE credito.afiliado_id=afiliado.id "
+                        . "                                             AND credito.tipo_credito_id = tipo_credito.id");
+        return view("Modulos.Afiliado.Afiliado.todo", compact("objsaldos"));
     }
 
     public function getEditar($id) {
@@ -132,31 +149,33 @@ class AfiliadoController extends Controller {
 
         $sql = "SELECT * FROM estudios";
         $objestudios = \DB::select($sql);
+
+        $sql = "select * from afiliado where id=$id";
+        $afiliado = \DB::select($sql);
+
         return view("Modulos.Afiliado.Afiliado.editar", compact('afiliado', 'objmunicipio', 'objtipo_identificacion', 'objdepartamento', 'objestado_civil', 'objestudios', 'objocupacion'));
     }
 
     public function postEditar() {
         $datos = \Request::all();
-        $objafiliado = \DB::select("UPDATE afiliado SET nro_documento ='{$datos['nro_documento']}',nombres ='{$datos['nombres']}',
-        						apellidos ='{$datos['apellidos']}',direccion ='{$datos['direccion']}',telefono='{$datos['telefono']}', 
-        						municipio_id='{$datos['municipio_id']}',sexo='{$datos['sexo']}', correo='{$datos['correo']}', 
-        						tipo_identificacion_id='{$datos['tipo_identificacion_id']}',departamento_id='{$datos['departamento_id']}',estado_civil_id='{$datos['estado_civil_id']}',"
-                        . "                                                                 ocupacion_id='{$datos['ocupacion_id']}',estudios_id='{$datos['estudios_id']}'
-                                WHERE id='" . $datos['id'] . "'");
+        $afiliado = \DB::select("UPDATE afiliado SET        nro_documento = '" . $datos['nro_documento'] . "', nombres='" . $datos['nombres'] . "', apellidos='" . $datos['apellidos'] . "', direccion='" . $datos['direccion'] . "', "
+                        . "                                                                   telefono='" . $datos['telefono'] . "', correo='" . $datos['correo'] . "', sexo='" . $datos['sexo'] . "', tipo_identificacion_id='" . $datos['tipo_identificacion_id'] . "', municipio_id='" . $datos['municipio_id'] . "' "
+                        . "                                                                    , departamento_id='" . $datos['departamento_id'] . "', estado_civil_id='" . $datos['estado_civil_id'] . "' , ocupacion_id='" . $datos['ocupacion_id'] . "' , estudios_id='" . $datos['estudios_id'] . "' WHERE id = " . $datos['id'] . "");
+        return \Redirect::to('afiliado/listar');
     }
 
-    public function getDesactivar($per_id) {
+    public function getDesativar($id) {
 
-        $sql = "UPDATE persona SET per_estado=0 WHERE per_id=$per_id";
-        $personas = \DB::select($sql);
-        return Redirect::to(url('persona/listar'));
+        $sql = "DELETE afiliado  WHERE id=$id";
+        $afiliado= \DB::select($sql);
+        return Redirect::to(url('afiliado/listar'));
     }
 
-    public function getActivar($per_id) {
+    public function getActivar($id) {
 
-        $sql = "UPDATE persona SET per_estado=1 WHERE per_id=$per_id";
-        $personas = \DB::select($sql);
-        return Redirect::to(url('persona/listar'));
+        $sql = "UPDATE afiliado SET estado=1 WHERE id=$id";
+        $afuliado = \DB::select($sql);
+        return Redirect::to(url('afiñiado/listar'));
     }
 
 }

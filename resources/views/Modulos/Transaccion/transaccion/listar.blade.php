@@ -45,16 +45,23 @@
                                             <td><?php echo $transaccion->valor_capital ?></td>
                                             <td><?php echo $transaccion->valor_interes ?></td>
                                             <td class="text-center">    
-                                                <a href="<?php echo url("transaccion/ver/" . $transaccion->id) ?>"
-                                                   class="btn btn-info btn-sm">Ver</a>
+                                                <a href="<?php echo url("transaccion/editar/" . $transaccion->id) ?>"
+                                                   class="btn btn-info btn-sm">Editar</a>
 
 
-                                                <button onclick="Desactivar(<?php echo $transaccion->id ?>)"
-                                                        class="btn btn-danger btn-sm" id="dss">Deshabilitar
-                                                </button>
-
-                                               
+                                                <?php if ($transaccion->estado == 1): ?>
+                                                    <button onclick="Desactivar(<?php echo $transaccion->id ?>)"
+                                                            class="btn btn-danger btn-sm" id="dss">Deshabilitar
+                                                    </button>
+                                                <?php else: ?>
+                                                    <button onclick="Activar(<?php echo $transaccion->id ?>)"
+                                                            class="btn btn-success btn-sm" id="add">Activar
+                                                    </button>
+                                                <?php endif; ?>
                                             </td>
+                                        </tr>
+
+                                        </td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>

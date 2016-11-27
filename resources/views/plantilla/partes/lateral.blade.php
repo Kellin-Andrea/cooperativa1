@@ -40,6 +40,7 @@
                         <ul class="treeview-menu">
                             <li><a href="{{ url('amortizacion/crear') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
                             <li><a href="{{ url('amortizacion/listar') }}"><i class="fa fa-circle-o"></i> Consultar</a></li>
+                            <li><a href="{{ url('amortizacion/amortiza') }}"><i class="fa fa-circle-o"></i> Amortizacion</a></li>
                         </ul>
                     </li>
                      <!-----------Modulo de Credito-->
@@ -48,6 +49,7 @@
                         <ul class="treeview-menu">
                             <li><a href="{{ url('credito/crear') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
                             <li><a href="{{ url('credito/listar') }}"><i class="fa fa-circle-o"></i> Consultar</a></li>
+                          
                         </ul>
                     </li>
                     
@@ -57,6 +59,9 @@
                         <ul class="treeview-menu">
                             <li><a href="{{ url('afiliado/crear') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
                             <li><a href="{{ url('afiliado/listar') }}"><i class="fa fa-circle-o"></i> Consultar</a></li>
+                            <li><a href="{{ url('afiliado/saldo') }}"><i class="fa fa-circle-o"></i> Saldos</a></li>
+                            <li><a href="{{ url('afiliado/todo') }}"><i class="fa fa-circle-o"></i> Afiliados</a></li>
+                         
                         </ul>
                     </li>
                     
@@ -66,22 +71,12 @@
                         <ul class="treeview-menu">
                             <li><a href="{{ url('transaccion/crear') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
                             <li><a href="{{ url('transaccion/listar') }}"><i class="fa fa-circle-o"></i> Consultar</a></li>
+                            <li><a href="{{ url('transaccion/movimientos') }}"><i class="fa fa-circle-o"></i> Movimientos</a></li>
                         </ul>
                     </li>
-            <!-----------Modulo de Usuarios-->
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-users"></i>
-                    <span>Usuarios</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li>
-                        <li><a href="<?php echo url('usuario/crear') ?>"><i class="fa fa-circle-o"></i> Crear</a></li>
-                        <li><a href="<?php echo url('usuario/listar') ?>"><i class="fa fa-circle-o"></i> Consultar</a></li>
-                    </li>
-                </ul>
-            </li>
+                    
+              
+            
         </ul>
     </section>
     <!-- /.sidebar -->

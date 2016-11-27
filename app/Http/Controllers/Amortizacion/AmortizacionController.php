@@ -25,7 +25,7 @@ class AmortizacionController extends Controller {
    */
   public function getIndex(Request $request) {
       
-   dd ($request->get('nombre'));
+
   }
 
   public function getCrear() {
@@ -45,6 +45,7 @@ class AmortizacionController extends Controller {
     $cuota_capital= $datos['cuota_capital'];    
     $cuota_interes= $datos['cuota_interes'];
     $valor_cuota= $datos['valor_cuota'];
+  
 //        dd($datos);
     \DB::insert(
       "INSERT INTO amortizacion "
@@ -55,6 +56,7 @@ class AmortizacionController extends Controller {
       . " cuota_capital,  "
       ." cuota_interes,  "
       . " valor_cuota  "
+      
       . ") "
       . "VALUES (?,?,?,?,?,?)", array(
       $nro_cuota,
@@ -72,7 +74,14 @@ class AmortizacionController extends Controller {
     $objamortizacion = \DB::select("SELECT * FROM amortizacion");
     return view("Modulos.Amortizacion.amortizacion.listar", compact("objamortizacion"));
   }
-
+  
+    public function getAmortiza() {
+        $objamortiza = \DB::select("SELECT nro_cuota,fecha_cuota,capital,valor_cuota,cuota_capital,cuota_interes,
+                                                                  plazo,periodo_id,valor_interes from amortizacion,credito  
+                                                                  where credito.amortizacion_id =amortizacion.id
+");
+        return view("Modulos.Amortizacion.Amortizacion.amortiza", compact("objamortiza"));
+    }
   public function getEliminar($id) {
     $objamotizacion = \DB::select("SELECT * FROM amortizacion WHERE id = $id");
     return view("Modulos.Amortizacion.Amortizacion.eliminar", compact("objamortizacion"));

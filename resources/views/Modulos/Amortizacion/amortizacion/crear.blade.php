@@ -9,18 +9,14 @@
         <div class="box-tools pull-right">
             <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
         </div>
+       
     </div>
     <div class="box-body">
         <div class="col-md-12">
             <!-- general form elements -->
             <div class="box box-primary">
                
-                   <form class="navbar-form navbar-right" role="search" method="get" action="<?php echo url('amortizacion/search') ?>">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="numero cuota">
-                            </div>
-                            <button type="submit" class="btn btn-default">Buscar</button>
-                        </form>
+                  
 
                 <form name="signupForm1" id="signupForm1" class="form-horizontal" method="post" autocomplete="off" action="<?php echo url('amortizacion/crear') ?>">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -74,6 +70,8 @@
                                 <input type="number" class="form-control" name="valor_cuota" id="valor_cuota" placeholder="valor cuota l" onkeypress="return numeros(event)" required/>
                             </div>
                         </div>
+                        
+                              
 
                         <div class="col-lg-12">
                             <div class="box-footer">
