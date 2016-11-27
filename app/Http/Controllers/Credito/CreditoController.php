@@ -157,18 +157,18 @@ class CreditoController extends Controller {
         return \Redirect::to('afiliado/listar');
     }
 
-    public function getDestroy($id) {
+    public function getDessativar($id) {
 
-        $sql = "DELETE afiliado  WHERE id=$id";
-        $afiliado= \DB::select($sql);
-        return Redirect::to(url('afiliado/listar'));
+        $sql = "DELETE credito WHERE id=$id";
+        $credito= \DB::select($sql);
+        return Redirect::to(url('credito/listar'));
     }
 
-    public function getActivar($per_id) {
+    public function getActivar($id) {
 
-        $sql = "UPDATE persona SET per_estado=1 WHERE per_id=$per_id";
-        $personas = \DB::select($sql);
-        return Redirect::to(url('persona/listar'));
+        $sql = "UPDATE credito SET estado=1 WHERE per_id=$id";
+        $credito = \DB::select($sql);
+        return Redirect::to(url('credito/listar'));
     }
 
 }
