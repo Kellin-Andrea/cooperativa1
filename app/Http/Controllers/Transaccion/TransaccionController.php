@@ -105,7 +105,7 @@ class  TransaccionController extends Controller {
 
     $sql       = "update transaccion set estado=1 where id=$id";
     $transacion = \DB::select($sql);
-    return Redirect::to(url('talla/listar'));
+    return Redirect::to(url('transacion/listar'));
   }
 
 }

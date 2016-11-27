@@ -87,7 +87,7 @@ class AfiliadoController extends Controller {
                         . " ocupacion_id, "
                         . " tipo_identificacion_id, "
                         . " departamento_id, "
-                        . " estudios_id "
+                        . " estudios_id, "
                         . ") "
                         . "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)", array(
                     $nro_documento,

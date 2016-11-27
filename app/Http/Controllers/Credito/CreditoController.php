@@ -94,7 +94,7 @@ class CreditoController extends Controller {
                     $tipo_credito_id,
                     $valor_credito,
                      $amortizacion_id,
-                    $valor_interes
+                    $valor_interes,
                     
         ));
 

@@ -31,7 +31,7 @@
                                         <th class="text-center">Cuota Pago</th> 
                                         <th class="text-center">Valor Capital</th>
                                         <th class="text-center">Valor  Interes</th>
-
+                                        <th class="text-center">Estado</th>
                                         <th class="text-center">Acciones</th>
                                     </tr>
                                 </thead>
@@ -44,6 +44,7 @@
                                             <td><?php echo $transaccion->cuota_pago ?></td>
                                             <td><?php echo $transaccion->valor_capital ?></td>
                                             <td><?php echo $transaccion->valor_interes ?></td>
+                                            <td><?php echo $transaccion->estado ?></td>
                                             <td class="text-center">    
                                                 <a href="<?php echo url("transaccion/editar/" . $transaccion->id) ?>"
                                                    class="btn btn-info btn-sm">Editar</a>
