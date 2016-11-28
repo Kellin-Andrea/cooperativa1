@@ -52,19 +52,19 @@ class AfiliadoController extends Controller {
 
         $datos = \Request::all();
 
-        
+
         $nro_documento = $datos['nro_documento'];
         $nombres = $datos['nombres'];
         $apellidos = $datos['apellidos'];
         $direccion = $datos['direccion'];
-        $municipio_id = $datos['municipio_id'];
-        $correo = $datos['correo'];
         $telefono = $datos['telefono'];
+        $correo = $datos['correo'];
         $sexo = $datos['sexo'];
-        $estado_civil_id = $datos['estado_civil_id'];
-        $ocupacion_id = $datos['ocupacion_id'];
         $tipo_identificacion_id = $datos['tipo_identificacion_id'];
         $departamento_id = $datos['departamento_id'];
+        $municipio_id = $datos['municipio_id'];
+        $estado_civil_id = $datos['estado_civil_id'];
+        $ocupacion_id = $datos['ocupacion_id'];
         $estudios_id = $datos['estudios_id'];
 
 
@@ -72,37 +72,37 @@ class AfiliadoController extends Controller {
 
 
 
-         \DB::insert(
-                        "INSERT INTO afiliado "
-                        . "( "
-                        . " nro_documento, "
-                        . " nombres, "
-                        . " apellidos, "
-                        . " direccion, "
-                        . " municipio_id, "
-                        . " correo, "
-                        . " telefono, "
-                        . " sexo, "
-                        . " estado_civil_id, "
-                        . " ocupacion_id, "
-                        . " tipo_identificacion_id, "
-                        . " departamento_id, "
-                        . " estudios_id, "
-                        . ") "
-                        . "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)", array(
-                    $nro_documento,
-                    $nombres,
-                    $apellidos,
-                    $direccion,
-                    $telefono,
-                    $municipio_id,
-                    $correo,
-                    $sexo,
-                    $ocupacion_id,
-                    $estado_civil_id,
-                    $tipo_identificacion_id,
-                    $departamento_id,
-                    $estudios_id,
+        \DB::insert(
+                "INSERT INTO afiliado "
+                . "( "
+                . " nro_documento, "
+                . " nombres, "
+                . " apellidos, "
+                . " direccion, "
+                . " correo, "
+                . " sexo, "
+                . " telefono, "
+                . " tipo_identificacion_id, "
+                . " departamento_id, "
+                . " municipio_id, "
+                . " estado_civil_id, "
+                . " ocupacion_id, "
+                . " estudios_id "
+                . ") "
+                . "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)", array(
+            $nro_documento,
+            $nombres,
+            $apellidos,
+            $direccion,
+            $correo,
+            $sexo,
+            $telefono,
+            $tipo_identificacion_id,
+            $departamento_id,
+            $municipio_id,
+            $estado_civil_id,
+            $ocupacion_id,
+            $estudios_id,
         ));
 
         return \Redirect::to('afiliado/listar');
@@ -116,9 +116,9 @@ class AfiliadoController extends Controller {
 
     public function getTodo() {
         $objtodo = \DB::select("SELECT nombre,nro_documento,nombres,apellidos,correo,telefono,"
-                                                         . " fecha_tramite,nro_credito,saldo_credito,saldo_interes from afiliado,"
-                                                         . " tipo_identificacion,credito WHERE credito.afiliado_id=afiliado.id AND "
-                                                         . "afiliado.tipo_identificacion_id = tipo_identificacion.id");
+                        . " fecha_tramite,nro_credito,saldo_credito,saldo_interes from afiliado,"
+                        . " tipo_identificacion,credito WHERE credito.afiliado_id=afiliado.id AND "
+                        . "afiliado.tipo_identificacion_id = tipo_identificacion.id");
         return view("Modulos.Afiliado.Afiliado.todo", compact("objtodo"));
     }
 
@@ -167,7 +167,7 @@ class AfiliadoController extends Controller {
     public function getDesativar($id) {
 
         $sql = "DELETE afiliado  WHERE id=$id";
-        $afiliado= \DB::select($sql);
+        $afiliado = \DB::select($sql);
         return Redirect::to(url('afiliado/listar'));
     }
 
