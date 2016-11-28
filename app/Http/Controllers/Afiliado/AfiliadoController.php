@@ -175,7 +175,7 @@ class AfiliadoController extends Controller {
 
         $sql = "UPDATE afiliado SET estado=1 WHERE id=$id";
         $afuliado = \DB::select($sql);
-        return Redirect::to(url('afiñiado/listar'));
+        return Redirect::to(url('afiliado/listar'));
     }
 
 }
