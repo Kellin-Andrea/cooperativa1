@@ -44,13 +44,26 @@
                                             <td><?php echo $transaccion->cuota_pago ?></td>
                                             <td><?php echo $transaccion->valor_capital ?></td>
                                             <td><?php echo $transaccion->valor_interes ?></td>
-                                            <td><?php echo $transaccion->estado ?></td>
+                                      
                                             <td class="text-center">    
-                                                <a href="<?php echo url("transaccion/editar/" . $transaccion->id) ?>"
-                                                   class="btn btn-info btn-sm">Editar</a>
+                                           
 
 
                                                 <?php if ($transaccion->estado == 1): ?>
+                                                    <span class='label label-success'>
+                                                        <font class='h5'>Activo</font>
+                                                    </span>
+                                                <?php else: ?>
+                                                    <span class='label label-danger'>
+                                                        <font class='h5'>Inactivo</font>
+                                                    </span>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td>
+                       
+                                                 <a href="<?php echo url("transaccion/editar/" . $transaccion->id) ?>"
+                                                   class="btn btn-info btn-sm">Editar</a>
+                                                   <?php if ($transaccion->estado == 1): ?>
                                                     <button onclick="Desactivar(<?php echo $transaccion->id ?>)"
                                                             class="btn btn-danger btn-sm" id="dss">Deshabilitar
                                                     </button>

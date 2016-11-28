@@ -164,20 +164,18 @@ class AfiliadoController extends Controller {
         return \Redirect::to('afiliado/listar');
     }
 
-    public function getDesativar($id) {
+  public function getDesactivar($id) {
 
-        $sql = "DELETE afiliado  WHERE id=$id";
-        $afiliado = \DB::select($sql);
-        return Redirect::to(url('afiliado/listar'));
-    }
+    $sql       = "update afiliado set  estado=0 where id=$id";
+    $afiliado= \DB::select($sql);
+    return Redirect::to(url('afiliado/listar'));
+  }
 
-    public function getActivar($id) {
+  public function getActivar($id) {
 
-        $sql = "UPDATE afiliado SET estado=1 WHERE id=$id";
-        $afuliado = \DB::select($sql);
-        return Redirect::to(url('afiliado/listar'));
-    }
+    $sql       = "update afiliado set estado=1 where tal_id=$id";
+    $afiliado = \DB::select($sql);
+    return Redirect::to(url('afiliado/listar'));
+  }
 
 }
-
-?>

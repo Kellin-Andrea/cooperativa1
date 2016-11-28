@@ -35,7 +35,7 @@
                                             <th class="text-center">Valor Interes</th>
                                             <th class="text-center">Saldo Credito</th>
                                             <th class="text-center">Saldo Interes</th>
-                                          
+                                              <th class="text-center">Estado</th>
                                             <th class="text-center">Acciones</th>
                                         </tr>
                            
@@ -63,9 +63,33 @@
 
 
 
-                                    <button onclick="Desactivar(<?php echo $credito->id ?>)"
-                                            class="btn btn-danger btn-sm" id="dss">Deshabilitar
-                                    </button>
+                                    <?php if ($credito->estado == 1): ?>
+                                                    <span class='label label-success'>
+                                                        <font class='h5'>Activo</font>
+                                                    </span>
+                                                <?php else: ?>
+                                                    <span class='label label-danger'>
+                                                        <font class='h5'>Inactivo</font>
+                                                    </span>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td>
+                       
+                                         
+                                                   <?php if ($credito->estado == 1): ?>
+                                                    <button onclick="Desactivar(<?php echo $credito->id ?>)"
+                                                            class="btn btn-danger btn-sm" id="dss">Deshabilitar
+                                                    </button>
+                                                <?php else: ?>
+                                                    <button onclick="Activar(<?php echo $credito->id ?>)"
+                                                            class="btn btn-success btn-sm" id="add">Activar
+                                                    </button>
+                                                <?php endif; ?>
+                                            </td>
+                                        </tr>
+
+                                        </td>
+
 
 
 

@@ -95,7 +95,7 @@ class AmortizacionController extends Controller {
 
   public function getDesactivar($id) {
 
-    $sql       = "update amortizacion set estado=1 where id=$id";
+    $sql       = "update amortizacion set estado=0 where id=$id";
     $amortizacion = \DB::select($sql);
     return Redirect::to(url('amortizacion/listar'));
   }
@@ -106,22 +106,5 @@ class AmortizacionController extends Controller {
     $amortizacion = \DB::select($sql);
     return Redirect::to(url('amortizacion/listar'));
   }
-  
-    public function search($search){
-        $search = urldecode($search);
-        $datos =DB::select("SELECT * FROM amortizacion")
-                ->where('datos', 'LIKE', '%'.$search.'%')
-                ->orderBy('id', 'nro_cuota')
-                ->get();
-        
-        if (count($datos) == 0){
-            return View('amortizacion.search')
-            ->with('message', 'No hay resultados que mostrar')
-            ->with('search', $search);
-        } else{
-            return View('home.search')
-            ->with('datos', $datos)
-            ->with('search', $search);
-        }
-    }
+
 }

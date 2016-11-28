@@ -119,15 +119,18 @@ class CreditoController extends Controller {
                         . "                                                                    , departamento_id='" . $datos['departamento_id'] . "', estado_civil_id='" . $datos['estado_civil_id'] . "' , ocupacion_id='" . $datos['ocupacion_id'] . "' , estudios_id='" . $datos['estudios_id'] . "' WHERE id = " . $datos['id'] . "");
         return \Redirect::to('afiliado/listar');
     }
-    public function getDessativar($id) {
-        $sql = "DELETE credito WHERE id=$id";
-        $credito= \DB::select($sql);
-        return Redirect::to(url('credito/listar'));
-    }
-    public function getActivar($id) {
-        $sql = "UPDATE credito SET estado=1 WHERE per_id=$id";
-        $credito = \DB::select($sql);
-        return Redirect::to(url('credito/listar'));
-    }
+   public function getDesactivar($id) {
+
+    $sql       = "update credito_estado=0 where id=$id";
+    $credito = \DB::select($sql);
+    return Redirect::to(url('credito/listar'));
+  }
+
+  public function getActivar($id) {
+
+    $sql       = "update credito set estado=1 where id=$id";
+    $credito = \DB::select($sql);
+    return Redirect::to(url('credito/listar'));
+  }
+
 }
-?>

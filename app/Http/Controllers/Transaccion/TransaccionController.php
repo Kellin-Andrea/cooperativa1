@@ -101,16 +101,16 @@ class  TransaccionController extends Controller {
     }
   public function getDesactivar($id) {
 
-    $sql       = "update transacion set estado=0 where id=$id";
-    $transacion = \DB::select($sql);
+    $sql       = "update transaccion set estado=0 where id=$id";
+    $transaccion = \DB::select($sql);
     return Redirect::to(url('transacion/listar'));
   }
 
   public function getActivar($id) {
 
-    $sql       = "update transaccion set estado=1 where id=$id";
-    $transacion = \DB::select($sql);
-    return Redirect::to(url('transacion/listar'));
+    $sql       = "update transaccion estado=1 where id=$id";
+    $transaccion = \DB::select($sql);
+    return Redirect::to(url('transaccion/listar'));
   }
 
 }

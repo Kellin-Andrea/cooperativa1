@@ -47,10 +47,21 @@
                                             <td><?php echo $afiliado->estado ?></td>
                                             <td class="text-center">  
 
-                                                <a href="<?php echo url("afiliado/editar/" . $afiliado->id) ?>"
+                                               <?php if ($afiliado->estado == 1): ?>
+                                                    <span class='label label-success'>
+                                                        <font class='h5'>Activo</font>
+                                                    </span>
+                                                <?php else: ?>
+                                                    <span class='label label-danger'>
+                                                        <font class='h5'>Inactivo</font>
+                                                    </span>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td>
+                       
+                                                 <a href="<?php echo url("afiliado/editar/" . $afiliado->id) ?>"
                                                    class="btn btn-info btn-sm">Editar</a>
-
-                                                <?php if ($afiliado->estado == 1): ?>
+                                                   <?php if ($afiliado->estado == 1): ?>
                                                     <button onclick="Desactivar(<?php echo $afiliado->id ?>)"
                                                             class="btn btn-danger btn-sm" id="dss">Deshabilitar
                                                     </button>
@@ -59,6 +70,11 @@
                                                             class="btn btn-success btn-sm" id="add">Activar
                                                     </button>
                                                 <?php endif; ?>
+                                            </td>
+                                        </tr>
+
+                                        </td>
+
 
 
 

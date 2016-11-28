@@ -45,12 +45,25 @@
                                             <td><?php echo $amortizacion->cuota_capital ?></td>
                                             <td><?php echo $amortizacion->cuota_interes ?></td>
                                             <td><?php echo $amortizacion->valor_cuota ?></td>
-                                             <td><?php echo $amortizacion->estado?></td>
+                                             
 
                                             <td class="text-center">     
 
 
-                                                <?php if ($amortizacion->estado == 1): ?>
+                                               <?php if ($amortizacion->estado == 1): ?>
+                                                    <span class='label label-success'>
+                                                        <font class='h5'>Activo</font>
+                                                    </span>
+                                                <?php else: ?>
+                                                    <span class='label label-danger'>
+                                                        <font class='h5'>Inactivo</font>
+                                                    </span>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td>
+                       
+                                               
+                                                   <?php if ($amortizacion->estado == 1): ?>
                                                     <button onclick="Desactivar(<?php echo $amortizacion->id ?>)"
                                                             class="btn btn-danger btn-sm" id="dss">Deshabilitar
                                                     </button>
@@ -59,6 +72,11 @@
                                                             class="btn btn-success btn-sm" id="add">Activar
                                                     </button>
                                                 <?php endif; ?>
+                                            </td>
+                                        </tr>
+
+                                        </td>
+
 
 
                                             </td>
