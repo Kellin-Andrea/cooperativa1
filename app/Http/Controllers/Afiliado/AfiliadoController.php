@@ -72,7 +72,7 @@ class AfiliadoController extends Controller {
 
 
 
-        $sql = DB::insert(
+         \DB::insert(
                         "INSERT INTO afiliado "
                         . "( "
                         . " nro_documento, "
